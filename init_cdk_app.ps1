@@ -7,6 +7,7 @@ mkdir $temp_app_location
 
 Set-Location -Path $temp_app_location
 cdk init app --language python
+Set-Location -Path $project_location
 
 # Rename folder so its easier to move out content later
 $temp_app_dir_renamed = 'temporary_app_temp'
