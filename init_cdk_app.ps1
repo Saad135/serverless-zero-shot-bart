@@ -1,5 +1,5 @@
 $project_location = Get-Location
-$temp_app_dir_name = 'temporary_app'
+$temp_app_dir_name = 'infra'
 $temp_app_location = Join-Path -Path $project_location -ChildPath $temp_app_dir_name
 # Write-Output -InputObject $project_location\requirements.txt
 
@@ -10,7 +10,7 @@ cdk init app --language python
 Set-Location -Path $project_location
 
 # Rename folder so its easier to move out content later
-$temp_app_dir_renamed = 'temporary_app_temp'
+$temp_app_dir_renamed = 'infra_temp'
 $temp_app_location_renamed = Join-Path -Path $project_location -ChildPath $temp_app_dir_renamed
 Rename-Item -Path $temp_app_location -NewName $temp_app_location_renamed
 
