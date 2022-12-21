@@ -1,13 +1,20 @@
 from transformers import pipeline
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-import config
+
+NLP_TASK = "zero-shot-classification"
+NLP_MODEL = "./distilbart-mnli-12-1"
+
+SEQUENCE_TO_CLASSIFY = "I have worked at this company for 20 years"
+CANDIDATE_LABELS = ["experience", "education", "contact"]
 
 
 def main():
-    classifier = pipeline(config.NLP_TASK, model=config.NLP_MODEL)
-    sequence_to_classify = config.SEQUENCE_TO_CLASSIFY
-    candidate_labels = config.CANDIDATE_LABELS
-    outputs = classifier(sequence_to_classify, candidate_labels)
+    nli_model = AutoModelForSequenceClassification.from_pretrained(NLP_MODEL)
+    nli_tokenizer = AutoTokenizer.from_pretrained(NLP_MODEL)
+
+    classifier = pipeline(NLP_TASK, model=nli_model, tokenizer=nli_tokenizer)
+    outputs = classifier(SEQUENCE_TO_CLASSIFY, CANDIDATE_LABELS)
     print(outputs)
 
 
